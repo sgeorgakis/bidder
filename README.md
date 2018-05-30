@@ -41,6 +41,10 @@ Although the Campaign API url can be altered by the user,
 it does not affect the result, as the mock service determines the result
 by the type to be returned.
 
+Instead of loading the campaigns from a file and keeping them in a variable,
+a database could be used (e.g. H2 for simplicity).
+I believe that due to the simplicity of the project, such an approach is not necessary.
+
 A future improvement could be to implement a service that makes a real request
 and gets real results and be able to choose which service to enable/disable (mock or real request)
 by a property in the `application.yml` file or a maven profile.

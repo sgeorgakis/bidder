@@ -5,6 +5,7 @@ import com.bluebannana.bidder.service.RestService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.core.io.ClassPathResource;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.PostConstruct;
@@ -37,7 +38,7 @@ public class MockRestServiceImpl implements RestService {
      * @param object the class to cast the response
      * @param variables path variables
      * @param <T> the class to cast
-     * @return
+     * @return the response
      */
     @Override
     public <T> T getRequest(String url, Class<T> object, Object... variables) {
@@ -51,7 +52,7 @@ public class MockRestServiceImpl implements RestService {
 
     @PostConstruct
     private void loadData() {
-        try (InputStream stream = ClassLoader.getSystemResourceAsStream("campaigns.json")) {
+        try (InputStream stream = new ClassPathResource("campaigns.json").getInputStream()) {
             log.info("Loading campaigns.");
             ObjectMapper mapper = new ObjectMapper();
             setAvailableCampaigns(mapper.readValue(stream, Campaign[].class));
