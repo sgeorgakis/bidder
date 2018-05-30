@@ -51,7 +51,8 @@ public class MockRestServiceImpl implements RestService {
 
     @PostConstruct
     private void loadData() {
-        try (InputStream stream = ClassLoader.getSystemResourceAsStream("classpath:campaigns.json")) {
+        try (InputStream stream = ClassLoader.getSystemResourceAsStream("campaigns.json")) {
+            log.info("Loading campaigns.");
             ObjectMapper mapper = new ObjectMapper();
             setAvailableCampaigns(mapper.readValue(stream, Campaign[].class));
         } catch (IOException e) {
