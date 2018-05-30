@@ -1,0 +1,29 @@
+# ===================================================================
+# Spring Boot configuration.
+#
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+logging:
+    level:
+        ROOT: DEBUG
+
+server:
+  port: 8080
+
+spring:
+  application:
+    name: bidder
+  mvc:
+    throw-exception-if-no-handler-found: true
+
+# ===================================================================
+# Application specific properties
+# ===================================================================
+application:
+  async:
+    core-pool-size: 2
+    max-pool-size: 10
+    queue-capacity: 100
